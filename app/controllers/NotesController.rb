@@ -5,16 +5,22 @@ class NotesController < ApplicationController
     end
 
     def new 
-        @post = Post.new 
-      end
+        @note = Note.new 
+    end
       
     def create
-        post = Post.create(post_params)
-        redirect_to posts_path
+        note = Note.create(note_params)
+        redirect_to notes_path
+    end
+
+    def destroy 
+        @note = Note.find(params[:id])
+        @note.destroy
+        redirect_to notes_path
     end
     
     private
-    def post_params
-        params.require(:post).permit(:title, :content)
+    def note_params
+        params.require(note).permit(:content)
     end
 end

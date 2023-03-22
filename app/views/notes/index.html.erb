@@ -1,11 +1,14 @@
 <div class="container">
-    <h1>To do list</h1>
-    <div class="input-container">
-        <%= f.text_field :title, class: 'input-field'%> //make placeholder 
-        <input type="text" placeholder="add note" class="input-field">
-        <button class="add-note-btn"><i class="fas fa-plus"></i></button>
+    <div class="header">
+        <h1>Todo App</h1>
+        <a class="add-note-btn" href="<%=new_note_path%>"><i class="fas fa-plus"></i></a>
     </div>
-    <% @notes.each do |note| %>
-        <p><%= note.content %></p>
-    <% end %>
+        <% @notes.each do |note| %>
+            <%= form_with(model: @note, url: note_path(note), method: :delete, data: { turbo_confirm: "Do you want to remove this note ?" }, class: "notes") do |form| %>
+                <p><%= note.content %></p>
+                <%= form.button class: "remove-note-btn" do %>
+                    <i class="fas fa-trash"></i>
+                <% end %>
+            <% end %>
+        <% end %>
 </div>

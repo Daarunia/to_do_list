@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   # root path route
   root to: 'notes#index'
   resources :notes 
-
 end
