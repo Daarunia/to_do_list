@@ -1,0 +1,12 @@
+<%= form_for @note do |n| %>
+    <div class="container">
+        <div class="header">
+            <h1>Edit note</h1>
+            <a class="navigation-note-btn" href="<%=notes_path%>"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <div class="input-container">
+            <%= n.text_field :content, class: 'input-field', placeholder: @note.content, value:'' %>
+            <button class="edit-note-btn button" href="<%=edit_note_path%>"><i class="fas fa-pencil"></i></button>
+        </div>
+    </div>
+<% end %>

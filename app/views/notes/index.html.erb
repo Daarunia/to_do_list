@@ -4,11 +4,18 @@
         <a class="add-note-btn" href="<%=new_note_path%>"><i class="fas fa-plus"></i></a>
     </div>
         <% @notes.each do |note| %>
-            <%= form_with(model: @note, url: note_path(note), method: :delete, data: { turbo_confirm: "Do you want to remove this note ?" }, class: "notes") do |form| %>
+            <div class="notes">
                 <p><%= note.content %></p>
-                <%= form.button class: "remove-note-btn" do %>
-                    <i class="fas fa-trash"></i>
-                <% end %>
-            <% end %>
+                <div class="notes-button">
+                    <div class="button">
+                        <a class="edit-note-btn" href="<%=edit_note_path(note.id)%>"><i class="fas fa-pencil"></i></a>
+                    </div>
+                    <%= form_with(model: @note, url: note_path(note), method: :delete, data: { turbo_confirm: "Do you want to remove this note ?" }, class: "button") do |form| %>
+                        <%= form.button class: "remove-note-btn" do %>
+                            <i class="fas fa-trash"></i>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
         <% end %>
 </div>
